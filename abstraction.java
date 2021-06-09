@@ -8,6 +8,24 @@ public class abstraction{
         System.out.println(m.getName());
         System.out.println(m.getWife());
         System.out.println(m.getSex());
+        System.out.println("-----------------------")  ;
+
+        female fe=new female("Seeta");
+        fe.setHusband("Ram");
+        fe.setSex(false);
+        System.out.println(fe.getName());
+        System.out.println(fe.getHusband());
+        System.out.println(fe.getSex());
+        System.out.println("-----------------------");
+    
+        father obj=new father("Ram");
+        obj.setWife("Seeta");
+        obj.setSex(true);
+        obj.setChild(2);
+        System.out.println(obj.getName());
+        System.out.println(obj.getWife());
+        System.out.println(obj.getSex());
+        System.out.println(obj.getChildren());
     }
 }
 interface human{
@@ -43,4 +61,31 @@ class male extends person{
         return sex==false?"Female":"Male";
      }
  }
-
+ class female extends person{
+    private String husband;
+    female(String name){
+        this.name=name;
+    }  
+    
+     public void setHusband(String h){
+         this.husband=h;
+     }
+     public String getHusband(){
+        return husband;
+    }
+     public String getSex(){
+        return sex==false?"Female":"Male";
+     }
+ }
+class father extends male{
+private int children;
+father(String na){
+    super(na);
+}  
+public void setChild(int child){
+    this.children=child;
+}
+public int getChildren(){
+   return children;
+}
+}
