@@ -1,0 +1,33 @@
+<html>
+<head></head>
+<body>
+<video id="player"  autoplay height="300px"></video>
+<button id="capture">CLICK</button>
+<button id="reset">RESET</button>
+<canvas id="canvas" width="450px" height="300px"></canvas>
+<script>
+  const player = document.getElementById('player');
+  const canvas = document.getElementById('canvas');
+  const context = canvas.getContext('2d');
+  const capture = document.getElementById('capture');
+  capture.addEventListener('click', () => {
+    context.drawImage(player, 0, 0, canvas.width, canvas.height);
+	// to stop;
+	player.srcObject.getVideoTracks().forEach(track => track.stop());	
+	player.srcObject.getAudioTracks().forEach(track => track.stop());	
+  });
+	reset.addEventListener('click',()=> {
+    context.fillStyle = "white";
+    context.fillRect(0, 0, canvas.width, canvas.height);
+	navigator.mediaDevices.getUserMedia({ video:true}).then((stream) => {
+      player.srcObject = stream;
+    });
+  });
+  navigator.mediaDevices.getUserMedia({ video:true,audio:true }).then((stream) => {
+      player.srcObject = stream;
+    });
+</script>
+
+
+</body>
+</html>
